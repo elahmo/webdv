@@ -1,8 +1,29 @@
 ﻿
 @{
-    ViewBag.Title = "Index";
-}
+    ViewBag.Title = "WebDV App";
 
-<h2>Index</h2>
-<p>Hello, this is a sample paragraph!</p>
+}
+@model WebDV.Models.Submission[]
+<h2>List of submissions</h2>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>UserID</th>
+        <th>Date</th>
+        <th>Grade</th>
+        <th>Feedback</th>
+        <th>Feedback Author</th>
+    </tr>
+    @foreach (var s in @Model)
+    {
+    <tr>
+        <td>@s.submissionID</td>
+        <td>@s.userID</td>
+        <td>@s.date</td>
+        <td>@s.grade</td>
+        <th>@s.feedbackText</th>
+        <td>@s.feedbackAuthor</td>
+    </tr>
+    }
+</table>
 

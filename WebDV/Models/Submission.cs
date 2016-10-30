@@ -10,7 +10,7 @@ namespace WebDV.Models
         public int submissionID { get; set; }
         public int userID { get; set; }
         public DateTime date { get; set; }
-        public int Grade { get; set; }
+        public int grade { get; set; }
         public string feedbackText { get; set; }
         public int feedbackAuthor { get; set; }
     }
