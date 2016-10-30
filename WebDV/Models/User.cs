@@ -19,4 +19,5 @@ namespace WebDV.Models
     {
         public UserContext() : base() { }
         public DbSet<User> UserDB { get; set; }
+    }
 }
