@@ -8,10 +8,11 @@ namespace WebDV.Controllers
 {
     public class HomeController : Controller
     {
-        // GET: Home
-        public String Index()
+        [Route("/")]
+        [HttpGet]
+        public ViewResult Index()
         {
-            return "Hello Ahmet and Konstantinos!";
+            return View();
 
         }
     }
