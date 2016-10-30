@@ -11,7 +11,7 @@ namespace WebDV.Controllers
         // GET: Home
         public String Index()
         {
-            return "Hello Ahmet and Konstaninos!";
+            return "Hello Ahmet and Konstantinos!";
 
         }
     }
