@@ -21,4 +21,21 @@ namespace WebDV.Models
         public SubmissionContext() : base() { }
         public DbSet<Submission> SubmissionDB { get; set; }
     }
+    public static class MoreExtensionMethods
+    {
+        public static IEnumerable<Submission> FindBySubmissionID(
+            this IEnumerable<Submission> submissions, int sid)
+        {
+            return (from i in submissions where i.submissionID == sid select i);
+        }
+        public static void DeleteImagesByPersonID(
+            this SubmissionContext submissions, int sid)
+        {
+            foreach (Submission i in submissions.SubmissionDB)
+            {
+                if (i.submissionID == sid) submissions.SubmissionDB.Remove(i);
+            }
+            submissions.SaveChanges();
+        }
+    }
 }
