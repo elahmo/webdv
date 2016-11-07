@@ -5,6 +5,7 @@
 }
 @model WebDV.Models.Submission[]
 <h2>List of submissions</h2>
+<a href="/Submission/Create">Create New Submission</a>
 <table>
     <tr>
         <th>ID</th>
@@ -13,6 +14,7 @@
         <th>Grade</th>
         <th>Feedback</th>
         <th>Feedback Author</th>
+        <th>Actions</th>
     </tr>
     @foreach (var s in @Model)
     {
@@ -23,6 +25,7 @@
         <td>@s.grade</td>
         <th>@s.feedbackText</th>
         <td>@s.feedbackAuthor</td>
+        <td><a href="/Submission/Details/@s.submissionID">View</a><br/><a href="/Feedback/Details/@s.submissionID">Feedback</a></td>
     </tr>
     }
 </table>
