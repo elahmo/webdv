@@ -12,11 +12,10 @@ namespace WebDV.Controllers
         // GET: Submission/Details/5
         [HttpGet]
         [Route("Submission/Details/")]
-        public ActionResult Details()
+        public ActionResult Details(int id)
         {
-            int sid = 1;
             SubmissionContext SubContext = new Models.SubmissionContext();
-            Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(sid).ToArray();
+            Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
             return View(Submissions);
         }
 
