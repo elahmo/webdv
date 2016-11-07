@@ -14,7 +14,7 @@ namespace WebDV.Controllers
         [Route("Submission/Details/")]
         public ActionResult Details()
         {
-            int sid = 89;
+            int sid = 1;
             SubmissionContext SubContext = new Models.SubmissionContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(sid).ToArray();
             return View(Submissions);
