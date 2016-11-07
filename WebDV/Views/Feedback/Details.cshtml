@@ -1,0 +1,40 @@
+﻿@model WebDV.Models.Submission[]
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Details</title>
+</head>
+<body>
+    <div> 
+        @if (Model.Length == 0)
+        {
+            <h1>No Submission Found</h1>
+        }
+        else
+        {
+            <h1>Submission details for @Model[0].submissionID</h1>
+            foreach (WebDV.Models.Submission sub in Model)
+            {
+                if (sub.submissionData != null)
+                {
+                    <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
+                }
+            }
+        }
+        <hr />
+        <form method="post" action="/Feedback/Edit/@Model[0].submissionID">
+            <input type="text" name="feedbackText" />
+            <input type="text" name="grade" />
+            <input type="submit" />
+        </form>
+    </div>
+</body>
+</html>
+
