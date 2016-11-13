@@ -45,7 +45,7 @@ namespace WebDV.Controllers
                 SubContext.SubmissionDB.Add(sub);
                 SubContext.SaveChanges();
             }
-            return RedirectToAction("Details");
+            return RedirectToAction("../");
         }
 
         // GET: Submission/Edit/5
