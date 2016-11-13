@@ -5,7 +5,9 @@
 }
 @model WebDV.Models.Submission[]
 <h2>List of submissions</h2>
-<a href="/Submission/Create">Create New Submission</a>
+@if (Request.IsAuthenticated) {
+    <a href="/Submission/Create">Create New Submission</a>
+}
 <table>
     <tr>
         <th>ID</th>
@@ -25,7 +27,14 @@
         <td>@s.grade</td>
         <th>@s.feedbackText</th>
         <td>@s.feedbackAuthor</td>
-        <td><a href="/Submission/Details/@s.submissionID">View</a><br/><a href="/Feedback/Details/@s.submissionID">Feedback</a></td>
+        <td>
+            <a href="/Submission/Details/@s.submissionID">View</a><br />
+            @if (Request.IsAuthenticated)
+            {
+                <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
+            }
+        </td>
+
     </tr>
     }
 </table>
