@@ -13,38 +13,10 @@ namespace WebDV.Controllers
         // GET: Feedback/Details/5
         public ActionResult Details(int id)
         {
-            //int sid = 1;
             SubmissionContext SubContext = new Models.SubmissionContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
             return View(Submissions);
-        }
-
-        // GET: Feedback/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: Feedback/Create
-        [HttpPost]
-        public ActionResult Create(FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Feedback/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
+   
         }
 
         // POST: Feedback/Edit/5
@@ -60,29 +32,7 @@ namespace WebDV.Controllers
                 Submissions[0].feedbackAuthor = 1;
                 SubContext.SaveChanges();
               
-                return RedirectToAction("../Index");
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: Feedback/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Feedback/Delete/5
-        [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
-        {
-            try
-            {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                return RedirectToAction("../");
             }
             catch
             {
