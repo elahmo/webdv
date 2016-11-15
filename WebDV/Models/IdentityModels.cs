@@ -24,7 +24,7 @@ namespace WebDV.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base()
+        public ApplicationDbContext() : base("WebDV.Db")
         {
             Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
         }

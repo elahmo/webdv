@@ -1,4 +1,5 @@
 ﻿@using Microsoft.AspNet.Identity
+@using System.Web.Security
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -6,6 +7,7 @@
         @Html.AntiForgeryToken()
 
         <ul class="nav navbar-nav navbar-right">
+            @User.Identity.
             <li>
                 @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
             </li>

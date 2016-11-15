@@ -18,7 +18,7 @@ namespace WebDV.Models
     }
     public class SubmissionContext : DbContext
     {
-        public SubmissionContext() : base() { }
+        public SubmissionContext() : base("WebDV.Db") { }
         public DbSet<Submission> SubmissionDB { get; set; }
     }
     public static class MoreExtensionMethods
