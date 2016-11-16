@@ -8,6 +8,7 @@ using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 namespace WebDV.Controllers
 {
+    [Authorize(Roles ="Student")]
     public class SubmissionController : Controller
     {
         // GET: Submission/Details/5
@@ -49,4 +50,5 @@ namespace WebDV.Controllers
             return RedirectToAction("../");
         }
     }
+
 }

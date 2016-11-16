@@ -8,6 +8,7 @@ using WebDV.Models;
 
 namespace WebDV.Controllers
 {
+    [Authorize(Roles = "Lecturer")]
     public class FeedbackController : Controller
     {
         // GET: Feedback/Details/5
