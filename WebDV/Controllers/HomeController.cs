@@ -37,7 +37,6 @@ namespace WebDV.Controllers
             {
                 SContext = new Models.SubmissionContext();
                 Submissions = SContext.SubmissionDB.ToArray();
-                //Submissions = SubmissionDB.ToArray();
             }
             return View(Submissions);
 
