@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using WebDV.Models;
 using System.Diagnostics;
+using Microsoft.AspNet.Identity;
 namespace WebDV.Controllers
 {
     public class SubmissionController : Controller
@@ -33,7 +34,7 @@ namespace WebDV.Controllers
             {
                 Submission sub = new Submission
                 {
-                    userID = 1,
+                    userID = User.Identity.GetUserId(),
                     date = DateTime.Now,
                     grade = 0,
                     feedbackText = null,

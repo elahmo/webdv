@@ -9,7 +9,7 @@ namespace WebDV.Models
     public class Submission
     {
         public int submissionID { get; set; }
-        public int userID { get; set; }
+        public string userID { get; set; }
         public DateTime date { get; set; }
         public byte[] submissionData { get; set; }
         public int grade { get; set; }
@@ -18,7 +18,9 @@ namespace WebDV.Models
     }
     public class SubmissionContext : DbContext
     {
-        public SubmissionContext() : base("WebDV.Db") { }
+        public SubmissionContext() : base("WebDV.Db") {
+            Database.SetInitializer<SubmissionContext>(new DropCreateDatabaseIfModelChanges<SubmissionContext>());
+        }
         public DbSet<Submission> SubmissionDB { get; set; }
     }
     public static class MoreExtensionMethods
@@ -27,6 +29,11 @@ namespace WebDV.Models
             this IEnumerable<Submission> submissions, int sid)
         {
             return (from i in submissions where i.submissionID == sid select i);
+        }
+        public static IEnumerable<Submission> FindByUserID(
+            this IEnumerable<Submission> submissions, string uid)
+        {
+            return (from i in submissions where i.userID == uid select i);
         }
         public static void DeleteImagesByPersonID(
             this SubmissionContext submissions, int sid)
