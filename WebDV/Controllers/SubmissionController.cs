@@ -20,14 +20,6 @@ namespace WebDV.Controllers
         {
             SubmissionContext SubContext = new Models.SubmissionContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-            var users = Membership.GetAllUsers();
-            var usernames = new Dictionary<Guid,string>();
-            foreach (MembershipUser mu in users)
-            {
-                usernames.Add((Guid)mu.ProviderUserKey,mu.UserName);
-
-            }
-            ViewData["usernames"] = usernames;
             return View(Submissions);
         }
 

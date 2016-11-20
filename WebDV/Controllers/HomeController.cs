@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using WebDV.Models;
 using System.Data.Entity;
 using Microsoft.AspNet.Identity;
+using System.Web.Security;
 
 namespace WebDV.Controllers
 {
@@ -38,6 +39,14 @@ namespace WebDV.Controllers
                 SContext = new Models.SubmissionContext();
                 Submissions = SContext.SubmissionDB.ToArray();
             }
+            var UsersContext = new ApplicationDbContext();
+            var usernames = new Dictionary<string, string>();
+            foreach (var mu in UsersContext.Users.ToList())
+            {
+                usernames.Add(mu.Id, mu.UserName);
+
+            }
+            ViewBag.UserNames = usernames;
             return View(Submissions);
 
         }

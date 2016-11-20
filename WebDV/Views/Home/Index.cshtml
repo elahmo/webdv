@@ -1,6 +1,7 @@
 ﻿
 @{
     ViewBag.Title = "WebDV App";
+    var usernames = ViewBag.UserNames;
 }
 @model WebDV.Models.Submission[]
 <h2>List of submissions</h2>
@@ -21,7 +22,7 @@
     {
     <tr>
         <td>@s.submissionID</td>
-            <td>@s.userID</td>
+            <td>@usernames[s.userID]</td>
             <td>@s.date</td>
             <td>@s.grade</td>
             <th>@s.feedbackText</th>

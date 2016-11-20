@@ -26,11 +26,10 @@
             {
                 if (sub.submissionData != null){
 			      <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
-            	}
-				if (sub.grade != null){
-                 <h3>Grade: @sub.grade</h3>
-            	}
-				if (sub.feedbackText != null){
+                }
+                if (sub.feedbackText != null)
+                {
+                  <h3>Grade: @sub.grade</h3>
 	              <h3>Feedback:</h3>
 				  <p>@sub.feedbackText</p>
             	}
