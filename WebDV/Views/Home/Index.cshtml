@@ -1,7 +1,6 @@
 ﻿
 @{
     ViewBag.Title = "WebDV App";
-
 }
 @model WebDV.Models.Submission[]
 <h2>List of submissions</h2>
@@ -22,20 +21,20 @@
     {
     <tr>
         <td>@s.submissionID</td>
-        <td>@s.userID</td>
-        <td>@s.date</td>
-        <td>@s.grade</td>
-        <th>@s.feedbackText</th>
-        <td>@s.feedbackAuthor</td>
-        <td>
-            <a href="/Submission/Details/@s.submissionID">View</a><br />
-            @if (Request.IsAuthenticated && User.IsInRole("Lecturer"))
-            {
-                <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
-            }
-        </td>
+            <td>@s.userID</td>
+            <td>@s.date</td>
+            <td>@s.grade</td>
+            <th>@s.feedbackText</th>
+            <td>@s.feedbackAuthor</td>
+            <td>
+                <a href="/Submission/Details/@s.submissionID">View</a><br />
+                @if (Request.IsAuthenticated && User.IsInRole("Lecturer"))
+                {
+                    <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
+                }
+            </td>
 
-    </tr>
+</tr>
     }
 </table>
 
