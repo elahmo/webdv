@@ -13,21 +13,27 @@
 </head>
 <body>
     <div>
-        <h4>Submission</h4>
+        <h2>Submission</h2>
         <hr />        
         @if (Model.Length == 0)
         {
-            <h1>No Submission Found</h1>
+            <h3>No Submission Found</h3>
         }
         else
         {
-            <h1>Submission details for @Model[0].submissionID</h1>
+            <h3>Submission details for @Model[0].submissionID</h3>
             foreach (WebDV.Models.Submission sub in Model)
             {
-                    if (sub.submissionData != null)
-                    {
-                    <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
-                }
+                if (sub.submissionData != null){
+			      <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
+            	}
+				if (sub.grade != null){
+                 <h3>Grade: @sub.grade</h3>
+            	}
+				if (sub.feedbackText != null){
+	              <h3>Feedback:</h3>
+				  <p>@sub.feedbackText</p>
+            	}
             }
         }
     </div>

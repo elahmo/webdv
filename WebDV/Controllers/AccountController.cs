@@ -113,7 +113,7 @@ namespace WebDV.Controllers
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await this.UserManager.AddToRoleAsync(user.Id, "Lecturer");
+                    await this.UserManager.AddToRoleAsync(user.Id, "Student");
                     await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Index", "Home");
                 }
