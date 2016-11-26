@@ -8,34 +8,35 @@
 @if (Request.IsAuthenticated && User.IsInRole("Student")) {
     <a href="/Submission/Create">Create New Submission</a>
 }
-<table>
-    <tr>
-        <th>ID</th>
-        <th>UserID</th>
-        <th>Date</th>
-        <th>Grade</th>
-        <th>Feedback</th>
-        <th>Feedback Author</th>
-        <th>Actions</th>
-    </tr>
-    @foreach (var s in @Model)
-    {
-    <tr>
-        <td>@s.submissionID</td>
-            <td>@usernames[s.userID]</td>
-            <td>@s.date</td>
-            <td>@s.grade</td>
-            <th>@s.feedbackText</th>
-            <td>@s.feedbackAuthor</td>
-            <td>
-                <a href="/Submission/Details/@s.submissionID">View</a><br />
-                @if (Request.IsAuthenticated && User.IsInRole("Lecturer"))
+<div class="tb1">
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>UserID</th>
+            <th>Date</th>
+            <th>Grade</th>
+            <th>Feedback</th>
+            <th>Feedback Author</th>
+            <th>Actions</th>
+        </tr>
+        @foreach (var s in @Model)
+        {
+            <tr>
+                <td>@s.submissionID</td>
+                <td>@usernames[s.userID]</td>
+                <td>@s.date</td>
+                <td>@s.grade</td>
+                <th>@s.feedbackText</th>
+                <td>@s.feedbackAuthor</td>
+                <td>
+                    <a href="/Submission/Details/@s.submissionID">View</a><br />
+                    @if (Request.IsAuthenticated && User.IsInRole("Lecturer"))
                 {
-                    <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
-                }
-            </td>
+                        <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
+                    }
+                </td>
 
-</tr>
-    }
-</table>
-
+            </tr>
+        }
+    </table>
+</div>

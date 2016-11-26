@@ -43,7 +43,7 @@ namespace WebDV.Controllers
             var usernames = new Dictionary<string, string>();
             foreach (var mu in UsersContext.Users.ToList())
             {
-                usernames.Add(mu.Id, mu.UserName);
+                usernames.Add(mu.Id, mu.FirstName + " " + mu.LastName);
 
             }
             ViewBag.UserNames = usernames;
