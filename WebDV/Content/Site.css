@@ -12,7 +12,7 @@
 input,
 select,
 textarea {
-    max-width: 280px;
+    /*max-width: 280px;*/
     font-size: 1em;
 }
 
@@ -22,11 +22,11 @@ ul {
     padding: 0;
 }
 
-#first_ul{
-    width:40%;
+#menu_list{
+    width:50%;
     display:block;
     float:right;
-    margin-top:2%
+    margin:10px;
 }
 
 li a{
@@ -37,35 +37,28 @@ a{
     text-decoration:none;
 }
 
-.btn1 {
+.btn.btn-log {
     border-radius: 4px;
     color: white;
     display: inline-block;
     text-align: center;
+    min-width: 100px;
     background-color: #565656;
-    padding: 1%;
-    width: 35%;
+    padding: 5px;
     float:right;
+    margin: 5px;
 }
 
-.btn2 {
+.btn.btn-register {
     border-radius: 4px;
     color: #76323F;
     display: inline-block;
     text-align: center;
     background-color: #d7cec7;
-    padding: 1%;
-    width:35%;
+    padding: 5px;
+    min-width:100px;
     float:right;
-}
-
-.btn3 {
-    color: white;
-    display: inline-block;
-    text-align: center;
-    padding: 1%;
-    width:35%;
-    float:right;
+    margin: 5px;
 }
 
 #logo {
@@ -133,23 +126,54 @@ h2 {
     padding-bottom:2%
 }
 
-.label1{
-    display:inline-block;
-    width:20%;
-    font-size:1.1em;
-    float:left;
-}
-
 form{
     color:#565656;
 }
 
-.input1{
-    width: 20%;
+.group{
+    width:100%;
     display:block;
+    padding:5px;
+    max-width: 400px;
+}
+
+.loginform {
+    width:80%;
+}
+
+.loginform .label {
+    width:30%;
+    display:block;
+    font-size:1.1em;
     float:left;
 }
 
-.group1{
-    width:100%
+.loginform .input{
+    width: 68%;
+}
+
+.loginform .group .checkbox{
+    text-align:right;
+    padding-right:5px;
+}
+
+@media only screen and (max-width: 500px) {
+    .loginform {
+        width:100%;
+    }
+    .loginform .input{
+        width: 100%;
+    }
+    .loginform .label{
+        width: 100%;
+    }
+    .loginform .group .checkbox{
+        text-align:left;
+    }
+    .group {
+        max-width: 100%;
+    }
+    .nav1 {
+        height: 15vh;
+    }
 }
