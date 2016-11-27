@@ -102,11 +102,22 @@ table{
     border-collapse: collapse;
     width: 100%;
     margin-bottom:40px;
+    border-radius:2px;
+    color: #565656;
+}
+
+th{
+    text-align:center;
+    padding:1%;
+}
+
+td{
+    text-align:left;
+    padding:8px;
 }
 
 th,td{
-    text-align:left;
-    padding:8px;
+    border-bottom: 1px solid #565656;
 }
 
 .tb1{
@@ -145,11 +156,11 @@ form{
 }
 
 .input1{
-    width: 20%;
-    display:block;
+    width: 30%;
+    display:inline-block;
     float:left;
 }
 
 .group1{
-    width:100%
+    width:100%;
 }
