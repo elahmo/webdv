@@ -61,7 +61,7 @@ namespace WebDV.Controllers
                 SubContext.SaveChanges();
                 return RedirectToAction("../");
             } else {
-                ViewBag.ErrorMessage = "Something was wrong with the file you selected. Please ensure it is a proper html file.";
+                ModelState.AddModelError("fileError", "Something was wrong with the file you selected. Please ensure it is a proper html file.");
                 return View("Create");
             }
         }

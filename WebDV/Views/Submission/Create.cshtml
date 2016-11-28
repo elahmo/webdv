@@ -8,10 +8,7 @@
 </head>
 <body>
     <h1>Upload a Submission</h1>
-    @if (ViewBag.ErrorMessage is String)
-    {
-        <span class="error-message">@ViewBag.ErrorMessage</span>
-    }
+    @Html.ValidationMessage("fileError")
     <form enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
         <input type="file" name="SelectedSubmission"/>
         <input type="submit" value="submit" />
