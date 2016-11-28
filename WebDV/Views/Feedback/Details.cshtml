@@ -10,7 +10,7 @@
     <div> 
         @if (Model.Length == 0)
         {
-            <h1>No Submission Found</h1>
+            <h2>No Submission Found</h2>
         }
         else
         {
@@ -19,16 +19,17 @@
             {
                 if (sub.submissionData != null)
                 {
-                    <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
+                    <iframe class="submission-iframe" srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
                 }
             }
         }
         <hr />
+        <h2>Provide feedback</h2>
         @Html.ValidationMessage("fileError")
-        <form method="post" action="/Feedback/Edit/@Model[0].submissionID">
-            <input type="text" name="feedbackText" value="@Model[0].feedbackText"/>
-            <input type="text" name="grade" value="@Model[0].grade" />
-            <input type="submit" />
+        <form class="feedback-form" method="post" action="/Feedback/Edit/@Model[0].submissionID">
+            Feedback text: <textarea name="feedbackText">@Model[0].feedbackText</textarea>
+            Grade: <input type="number" name="grade" min="0" max="10" name="grade" accevalue="@Model[0].grade" /> <br />
+            <input type="submit" class="btn btn-submit"/>
         </form>
     </div>
 </body>
