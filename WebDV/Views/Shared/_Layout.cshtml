@@ -9,18 +9,18 @@
     <script src="~/Scripts/modernizr-2.6.2.js"></script>-->
 </head>
 <body>      
-    <div class="nav1">
-        @Html.ActionLink("Web Dev App", "Index", "Home", new { area = "" }, new { @id = "logo" })
+    <div class="navbar">
+        <div class="logo">
+            @Html.ActionLink("Web Dev App", "Index", "Home", new { area = "" }, new { @id = "logo" })
+        </div>
         @Html.Partial("_LoginPartial")
     </div>
     <div class="textbody">
         @RenderBody()
     </div>
-    <div class="ft1">
-        <footer>
-            <span>&copy; @DateTime.Now.Year - Web Development Application</span>
-        </footer>
-    </div>
+    <footer>
+        <div class="footer-text"><p>&copy; @DateTime.Now.Year - Web Development Application</p></div>
+    </footer>
     <!--<script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>-->
 </body>

@@ -23,7 +23,7 @@ ul {
 }
 
 #menu_list{
-    width:50%;
+    width: 60%;
     display:block;
     float:right;
     margin:10px;
@@ -65,11 +65,9 @@ a{
     color:white;
     font-size: 1.3em;
     display:block;
-    width: 40%;
-    padding-left: 2%;
-    margin-left:0;
     float:left;
-    padding-top:2%;
+    padding:15px;
+    
 }
 
 .textbody{
@@ -84,11 +82,16 @@ a{
 footer{
     background-color:#76323F;
     color:white;
-    padding: 8px 0px 60px 0px;
-    float:left;
+    padding: 5px;
     width:100%;
     bottom:0;
     position:absolute;
+}
+
+.footer-text {
+    text-align:center;
+    width: 100%;
+    display: block;
 }
 
 table{
@@ -117,8 +120,8 @@ th,td{
     overflow-x:auto;
 }
 
-.nav1{
-    height: 10vh;
+.navbar{
+    min-height: 100px;
     width:100%;
     background-color:#76323F;
     top:0;
@@ -177,6 +180,17 @@ form{
     text-align:right;
     padding-right:5px;
 }
+.span-greeting {
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    min-width: 150px;
+    background-color: #565656;
+    padding: 5px;
+    float:right;
+    margin: 5px;
+}
 
 @media only screen and (max-width: 500px) {
     .loginform {
@@ -194,7 +208,11 @@ form{
     .group {
         max-width: 100%;
     }
-    .nav1 {
-        height: 15vh;
+    .navbar {
+        min-height:150px;
+    }
+    #logo {
+        width: 100%;
+        text-align: center;
     }
 }
