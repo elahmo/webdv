@@ -116,8 +116,8 @@ th,td{
     border-bottom: 1px solid #565656;
 }
 
-.tb1{
-    overflow-x:auto;
+.submission-table {
+    width: 100%;
 }
 
 .navbar{
@@ -190,6 +190,21 @@ form{
     padding: 5px;
     float:right;
     margin: 5px;
+}
+
+.grade {
+    background-color: darkcyan;
+    padding: 2px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+}
+
+[grade="10"] {
+    background-color: green;
+}
+[grade="0"] {
+    background-color: red;
 }
 
 @media only screen and (max-width: 500px) {
