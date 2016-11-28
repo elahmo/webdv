@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
+using System.ComponentModel.DataAnnotations;
+
 
 namespace WebDV.Models
 {
     public class Submission
     {
         public int submissionID { get; set; }
+        [Required]
         public string userID { get; set; }
         public DateTime date { get; set; }
+        [Required]
         public byte[] submissionData { get; set; }
         public int grade { get; set; }
+        [StringLength(200)]
         public string feedbackText { get; set; }
-        public int feedbackAuthor { get; set; }
+        public string feedbackAuthor { get; set; }
     }
     public class SubmissionContext : DbContext
     {

@@ -24,6 +24,10 @@
             }
         }
         <hr />
+        @if (ViewBag.ErrorMessage is String)
+        {
+            <span class="error-message">@ViewBag.ErrorMessage</span>
+        }
         <form method="post" action="/Feedback/Edit/@Model[0].submissionID">
             <input type="text" name="feedbackText" value="@Model[0].feedbackText"/>
             <input type="text" name="grade" value="@Model[0].grade" />

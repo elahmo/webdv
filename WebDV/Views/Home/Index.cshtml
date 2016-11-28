@@ -27,11 +27,11 @@
                 <td>@s.date</td>
                 <td>@s.grade</td>
                 <th>@s.feedbackText</th>
-                <td>@s.feedbackAuthor</td>
+                <td>@if (s.feedbackAuthor != null){@usernames[s.feedbackAuthor]}</td>
                 <td>
                     <a href="/Submission/Details/@s.submissionID">View</a><br />
                     @if (Request.IsAuthenticated && User.IsInRole("Lecturer"))
-                {
+                    {
                         <a href="/Feedback/Details/@s.submissionID"> Feedback </a>
                     }
                 </td>

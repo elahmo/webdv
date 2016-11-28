@@ -41,7 +41,7 @@ namespace WebDV.Controllers
                     date = DateTime.Now,
                     grade = 0,
                     feedbackText = null,
-                    feedbackAuthor = 1,
+                    feedbackAuthor = null,
                     submissionData = new byte[SelectedSubmission.ContentLength]
                 };
                 SelectedSubmission.InputStream.Read(sub.submissionData, 0, sub.submissionData.Length);

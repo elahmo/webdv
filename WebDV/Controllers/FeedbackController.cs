@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -30,14 +31,17 @@ namespace WebDV.Controllers
                 Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
                 Submissions[0].grade = Int32.Parse(collection.Get("grade"));
                 Submissions[0].feedbackText = collection.Get("feedbackText");
-                Submissions[0].feedbackAuthor = 1;
+                Submissions[0].feedbackAuthor = User.Identity.GetUserId();
                 SubContext.SaveChanges();
               
                 return RedirectToAction("../");
             }
             catch
             {
-                return View();
+                SubmissionContext SubContext = new Models.SubmissionContext();
+                Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                ViewBag.ErrorMessage = "The feedback message cannot exceed 200 characters.";
+                return View("Details", Submissions);
             }
         }
     }
