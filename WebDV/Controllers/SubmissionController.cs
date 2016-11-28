@@ -20,7 +20,15 @@ namespace WebDV.Controllers
         {
             SubmissionContext SubContext = new Models.SubmissionContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-            return View(Submissions);
+
+            //check if user has made the submission, if not do not allow the access
+            if (User.Identity.GetUserId() != Submissions[0].userID)
+            {
+                return RedirectToAction("../");
+            } else //user is a student that has uploaded the file 
+            {
+                return View(Submissions);
+            }
         }
 
         // GET: Submission/Create
