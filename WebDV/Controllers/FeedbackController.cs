@@ -40,7 +40,7 @@ namespace WebDV.Controllers
             {
                 SubmissionContext SubContext = new Models.SubmissionContext();
                 Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                ViewBag.ErrorMessage = "The feedback message cannot exceed 200 characters.";
+                ModelState.AddModelError("fileError", "The feedback message cannot exceed 200 characters.");
                 return View("Details", Submissions);
             }
         }
