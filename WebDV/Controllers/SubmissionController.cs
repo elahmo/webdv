@@ -41,6 +41,7 @@ namespace WebDV.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase SelectedSubmission)
         {
+            System.Diagnostics.Debug.WriteLine(SelectedSubmission.ContentType.ToLower());
             if (SelectedSubmission != null && SelectedSubmission.ContentType.ToLower() == "text/html" && 
                 (System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".html" ||
                 System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".htm"))
@@ -58,8 +59,11 @@ namespace WebDV.Controllers
                 SubmissionContext SubContext = new Models.SubmissionContext();
                 SubContext.SubmissionDB.Add(sub);
                 SubContext.SaveChanges();
+                return RedirectToAction("../");
+            } else {
+                ViewBag.ErrorMessage = "Something was wrong with the file you selected. Please ensure it is a proper html file.";
+                return View("Create");
             }
-            return RedirectToAction("../");
         }
     }
 
