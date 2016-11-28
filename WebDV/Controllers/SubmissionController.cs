@@ -41,7 +41,9 @@ namespace WebDV.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase SelectedSubmission)
         {
-            if (SelectedSubmission != null)
+            if (SelectedSubmission != null && SelectedSubmission.ContentType.ToLower() == "text/html" && 
+                (System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".html" ||
+                System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".htm"))
             {
                 Submission sub = new Submission
                 {
