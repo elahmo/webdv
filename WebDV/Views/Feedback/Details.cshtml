@@ -14,7 +14,7 @@
         }
         else
         {
-            <h1>Submission details for @Model[0].submissionID</h1>
+            <h2>Submission details for @Model[0].submissionID</h2>
             foreach (WebDV.Models.Submission sub in Model)
             {
                 if (sub.submissionData != null)
@@ -27,8 +27,8 @@
         <h2>Provide feedback</h2>
         @Html.ValidationMessage("fileError")
         <form class="feedback-form" method="post" action="/Feedback/Edit/@Model[0].submissionID">
-            Feedback text: <textarea name="feedbackText">@Model[0].feedbackText</textarea>
-            Grade: <input type="number" name="grade" min="0" max="10" accevalue="@Model[0].grade" /> <br />
+            Feedback text: <textarea name="feedbackText" required>@Model[0].feedbackText</textarea>
+            Grade: <input type="number" name="grade" min="0" max="10" accevalue="@Model[0].grade" required/> <br />
             <input type="submit" class="btn btn-submit"/>
         </form>
     </div>

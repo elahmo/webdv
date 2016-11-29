@@ -7,10 +7,12 @@
     <title>Upload a submission</title>
 </head>
 <body>
-    <h1>Upload a Submission</h1>
-    @Html.ValidationMessage("fileError")
-    <form enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
-        <input type="file" name="SelectedSubmission"/>
+    <h2>Upload a Submission</h2>
+    <div class="group errors">
+        @Html.ValidationMessage("fileError", new { @class = "text-danger" })
+    </div>
+    <form class="loginform" enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
+        <input type="file" name="SelectedSubmission" required/>
         <input type="submit" value="submit" />
     </form>
     <div>

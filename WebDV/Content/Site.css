@@ -77,6 +77,7 @@ a{
     padding-left:10%;
     padding-top:5%;
     padding-right:10%;
+    padding-bottom:20%;
 }
 
 footer{
@@ -84,8 +85,8 @@ footer{
     color:white;
     padding: 5px;
     width:100%;
+	position:fixed;
     bottom:0;
-    position:absolute;
 }
 
 .footer-text {
@@ -108,7 +109,7 @@ th{
 }
 
 td{
-    text-align:left;
+    text-align:center;
     padding:8px;
 }
 
@@ -166,20 +167,31 @@ form{
 }
 
 .loginform .label {
-    width:30%;
+    width:35%;
     display:block;
     font-size:1.1em;
     float:left;
 }
 
 .loginform .input{
-    width: 68%;
+    width: 63%;
 }
 
 .loginform .group .checkbox{
     text-align:right;
     padding-right:5px;
 }
+
+.text-danger{
+    color:#cc0000;
+    width:100%;
+    display:block;
+    margin-bottom:5px;
+}
+.errors {
+    margin-bottom:15px;
+}
+
 .span-greeting {
     border-radius: 4px;
     color: white;
@@ -261,5 +273,9 @@ form{
     #logo {
         width: 100%;
         text-align: center;
+    }
+
+    .tableover{
+        overflow-x:auto;
     }
 }
