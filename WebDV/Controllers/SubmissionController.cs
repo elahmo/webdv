@@ -31,6 +31,25 @@ namespace WebDV.Controllers
             }
         }
 
+        // GET: Submission/View/5
+        [HttpGet]
+        [Route("Submission/View/")]
+        public String View(int id)
+        {
+            SubmissionContext SubContext = new Models.SubmissionContext();
+            Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+
+            //check if user has made the submission, if not do not allow the access
+            if (User.Identity.GetUserId() != Submissions[0].userID)
+            {
+                return "Not allowed!";
+            }
+            else //user is a student that has uploaded the file 
+            {
+                return System.Text.Encoding.UTF8.GetString(Submissions[0].submissionData);
+            }
+        }
+
         // GET: Submission/Create
         public ActionResult Create()
         {

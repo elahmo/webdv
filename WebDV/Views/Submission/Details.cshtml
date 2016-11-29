@@ -20,7 +20,7 @@
             foreach (WebDV.Models.Submission sub in Model)
             {
                 if (sub.submissionData != null){
-			      <iframe srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
+			      <iframe src="/Submission/View/@Model[0].submissionID"></iframe>
                 }
                 if (sub.feedbackText != null)
                 {
