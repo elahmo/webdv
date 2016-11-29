@@ -206,6 +206,9 @@ form{
 [grade="0"] {
     background-color: red;
 }
+[grade="-1"] {
+    background-color: gray;
+}
 .submission-iframe {
     width: 100%;
     min-height: 400px;

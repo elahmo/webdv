@@ -69,7 +69,7 @@ namespace WebDV.Controllers
                 {
                     userID = User.Identity.GetUserId(),
                     date = DateTime.Now,
-                    grade = 0,
+                    grade = -1,
                     feedbackText = null,
                     feedbackAuthor = null,
                     submissionData = new byte[SelectedSubmission.ContentLength]
