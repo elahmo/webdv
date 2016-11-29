@@ -20,16 +20,8 @@ namespace WebDV.Models
         [StringLength(200)]
         public string feedbackText { get; set; }
         public string feedbackAuthor { get; set; }
-        //public string textField { get; set; }
     }
-    //public class SubmissionContext : DbContext
-    //{
-    //    public SubmissionContext() : base("WebDV.Db")
-    //    {
-    //        Database.SetInitializer<SubmissionContext>(new DropCreateDatabaseIfModelChanges<SubmissionContext>());
-    //    }
-    //    public DbSet<Submission> SubmissionDB { get; set; }
-    //}
+
     public static class MoreExtensionMethods
     {
         public static IEnumerable<Submission> FindBySubmissionID(
