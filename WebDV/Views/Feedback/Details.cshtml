@@ -28,7 +28,7 @@
         @Html.ValidationMessage("fileError")
         <form class="feedback-form" method="post" action="/Feedback/Edit/@Model[0].submissionID">
             Feedback text: <textarea name="feedbackText">@Model[0].feedbackText</textarea>
-            Grade: <input type="number" name="grade" min="0" max="10" name="grade" accevalue="@Model[0].grade" /> <br />
+            Grade: <input type="number" name="grade" min="0" max="10" accevalue="@Model[0].grade" /> <br />
             <input type="submit" class="btn btn-submit"/>
         </form>
     </div>
