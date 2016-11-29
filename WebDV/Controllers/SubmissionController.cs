@@ -76,9 +76,25 @@ namespace WebDV.Controllers
                 };
                 SelectedSubmission.InputStream.Read(sub.submissionData, 0, sub.submissionData.Length);
                 ApplicationDbContext SubContext = new Models.ApplicationDbContext();
-                SubContext.SubmissionDB.Add(sub);
-                SubContext.SaveChanges();
-                return RedirectToAction("../");
+                using (var transactionQueue = SubContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        SubContext.SubmissionDB.Add(sub);
+                        SubContext.SaveChanges();
+
+                        transactionQueue.Commit();
+
+                        return RedirectToAction("../");
+
+                    }
+                    catch
+                    {
+                        transactionQueue.Rollback();
+                        ModelState.AddModelError("fileError", "There was an error with talking to the database.");
+                        return View("Create");
+                    }
+                }
             } else {
                 ModelState.AddModelError("fileError", "Something was wrong with the file you selected. Please ensure it is a proper html file.");
                 return View("Create");
