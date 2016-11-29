@@ -15,7 +15,7 @@ namespace WebDV.Controllers
         // GET: Feedback/Details/5
         public ActionResult Details(int id)
         {
-            SubmissionContext SubContext = new Models.SubmissionContext();
+            ApplicationDbContext SubContext = new Models.ApplicationDbContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
             return View(Submissions);
    
@@ -25,20 +25,34 @@ namespace WebDV.Controllers
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
+            ApplicationDbContext SubContext = new Models.ApplicationDbContext();
             try
             {
-                SubmissionContext SubContext = new Models.SubmissionContext();
-                Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                Submissions[0].grade = Int32.Parse(collection.Get("grade"));
-                Submissions[0].feedbackText = collection.Get("feedbackText");
-                Submissions[0].feedbackAuthor = User.Identity.GetUserId();
-                SubContext.SaveChanges();
-              
-                return RedirectToAction("../");
+                using (var transactionQueue = SubContext.Database.BeginTransaction())
+                {
+                    try
+                    {
+                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                        Submissions[0].grade = Int32.Parse(collection.Get("grade"));
+                        Submissions[0].feedbackText = collection.Get("feedbackText");
+                        Submissions[0].feedbackAuthor = User.Identity.GetUserId();
+                        SubContext.SaveChanges();
+
+                        transactionQueue.Commit();
+
+                        return RedirectToAction("../");
+
+                    } catch {
+                        transactionQueue.Rollback();
+                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                        ModelState.AddModelError("fileError", "There was an error with talking to the database.");
+                        return View("Details", Submissions);
+                    }
+
+                }                
             }
             catch
             {
-                SubmissionContext SubContext = new Models.SubmissionContext();
                 Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
                 ModelState.AddModelError("fileError", "The feedback message cannot exceed 200 characters.");
                 return View("Details", Submissions);

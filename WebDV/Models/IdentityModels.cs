@@ -24,10 +24,13 @@ namespace WebDV.Models
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
-        public ApplicationDbContext() : base("WebDV.Db")
+        public ApplicationDbContext() : base()
         {
-            Database.SetInitializer<ApplicationDbContext>(new DropCreateDatabaseIfModelChanges<ApplicationDbContext>());
+            Database.SetInitializer<ApplicationDbContext>(new MigrateDatabaseToLatestVersion<ApplicationDbContext, Migrations.Configuration>());
+
         }
+
+        public DbSet<Submission> SubmissionDB { get; set; }
 
         public static ApplicationDbContext Create()
         {

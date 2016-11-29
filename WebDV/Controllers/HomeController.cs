@@ -13,7 +13,8 @@ namespace WebDV.Controllers
  
     public class HomeController : Controller
     {
-        private SubmissionContext SContext;
+        //private SubmissionContext SContext;
+        private ApplicationDbContext SContext;
         private DbSet<Submission> SubmissionDB;
         private Submission[] Submissions;
        
@@ -31,12 +32,12 @@ namespace WebDV.Controllers
             bool isStudent = User.IsInRole("Student");
             if (isStudent)
             {
-                SContext = new Models.SubmissionContext();
+                SContext = new Models.ApplicationDbContext();
                 Submissions = SContext.SubmissionDB.FindByUserID(User.Identity.GetUserId()).ToArray();
             }
             else
             {
-                SContext = new Models.SubmissionContext();
+                SContext = new Models.ApplicationDbContext();
                 Submissions = SContext.SubmissionDB.ToArray();
             }
             var UsersContext = new ApplicationDbContext();

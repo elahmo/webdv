@@ -18,7 +18,7 @@ namespace WebDV.Controllers
         [Route("Submission/Details/")]
         public ActionResult Details(int id)
         {
-            SubmissionContext SubContext = new Models.SubmissionContext();
+            ApplicationDbContext SubContext = new Models.ApplicationDbContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
 
             //check if user has made the submission, if not do not allow the access
@@ -36,7 +36,7 @@ namespace WebDV.Controllers
         [Route("Submission/View/")]
         public String View(int id)
         {
-            SubmissionContext SubContext = new Models.SubmissionContext();
+            ApplicationDbContext SubContext = new Models.ApplicationDbContext();
             Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
 
             //check if user has made the submission, if not do not allow the access
@@ -75,7 +75,7 @@ namespace WebDV.Controllers
                     submissionData = new byte[SelectedSubmission.ContentLength]
                 };
                 SelectedSubmission.InputStream.Read(sub.submissionData, 0, sub.submissionData.Length);
-                SubmissionContext SubContext = new Models.SubmissionContext();
+                ApplicationDbContext SubContext = new Models.ApplicationDbContext();
                 SubContext.SubmissionDB.Add(sub);
                 SubContext.SaveChanges();
                 return RedirectToAction("../");
