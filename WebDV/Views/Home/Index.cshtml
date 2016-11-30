@@ -6,7 +6,7 @@
 @model WebDV.Models.Submission[]
 <h2>List of submissions</h2>
 @if (Request.IsAuthenticated && User.IsInRole("Student")) {
-    <a href="/Submission/Create">Create New Submission</a>
+    <a class="btn btn-new-submission" href="/Submission/Create">Create New Submission</a>
 }
 <div class="tableover">
     <table class="submission-table">

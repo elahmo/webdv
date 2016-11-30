@@ -251,6 +251,17 @@ form{
     min-width:100px;
     margin: 5px;
 }
+
+.btn.btn-new-submission {
+    border-radius: 4px;
+    color: white;
+    display: inline-block;
+    text-align: center;
+    min-width: 100px;
+    background-color: #267426;
+    padding: 5px;
+    margin: 15px;
+}
 @media only screen and (max-width: 500px) {
     .loginform {
         width:100%;
