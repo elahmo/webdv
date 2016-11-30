@@ -12,8 +12,9 @@
         @Html.ValidationMessage("fileError", new { @class = "text-danger" })
     </div>
     <form class="loginform" enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
-        <input type="file" name="SelectedSubmission" required/>
-        <input type="submit" value="submit" />
+        <input class="file-input "type="file" id="SelectedSubmission" name="SelectedSubmission" required/>
+        <label for="SelectedSubmission">Choose a file</label>
+        <input class="btn btn-submit" type="submit" value="submit" />
     </form>
     <div>
         @Html.ActionLink("Back to home", "Index")
