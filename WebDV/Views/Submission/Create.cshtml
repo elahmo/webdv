@@ -1,23 +1,15 @@
 ﻿@model WebDV.Models.Submission
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Upload a submission</title>
-</head>
-<body>
+<div>
     <h2>Upload a Submission</h2>
     <div class="group errors">
         @Html.ValidationMessage("fileError", new { @class = "text-danger" })
     </div>
     <form class="loginform" enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
-        <input class="file-input "type="file" id="SelectedSubmission" name="SelectedSubmission" required/>
+        <input class="file-input "type="file" id="SelectedSubmission" name="SelectedSubmission" required accept=".html, .htm"/>
         <label for="SelectedSubmission">Choose a file</label>
         <input class="btn btn-submit" type="submit" value="submit" />
     </form>
     <div>
         @Html.ActionLink("Back to home", "Index")
     </div>
-</body>
-</html>
+</div>

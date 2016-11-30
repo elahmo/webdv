@@ -277,6 +277,14 @@ form{
     border-radius: 5px;
 }
 
+.action-link {
+    background-color: #76323F;
+    padding: 3px;
+    text-align: center;
+    border-radius: 5px;
+    color: white;
+}
+
 @media only screen and (max-width: 500px) {
     .loginform {
         width:100%;
