@@ -28,9 +28,12 @@
             <td><p class="grade" grade="@s.grade">@if(s.grade == -1){ @("Unmarked"); } else{ @s.grade; }</p></td>
             <td>@s.feedbackText</td>
             <td>@if (s.feedbackAuthor != null){@usernames[s.feedbackAuthor]}</td>
-            <td><a class="action-link" href="/Feedback/Details/@s.submissionID">
-                @if (Request.IsAuthenticated && User.IsInRole("Lecturer")){@("Feedback")}else{@("View")}
-                </a>
+            <td>
+                @if (User.IsInRole("Lecturer")){
+                <a class="action-link" href="/Submission/Details/@s.submissionID">Feedback</a>
+                } else {
+                <a class="action-link" href="/Feedback/Details/@s.submissionID">View</a>
+                }
             </td>
         </tr>
         }
