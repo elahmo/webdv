@@ -21,7 +21,7 @@ namespace WebDV.Models
         public byte[] submissionData { get; set; }
         [Required, Range(-1, 10,ErrorMessage = "Grade must be between -1 or 10.")]
         public int grade { get; set; }
-        [StringLength(200, ErrorMessage = "Maximum length of feedback text is 200 characters.")]
+        [StringLength(200, MinimumLength = 50, ErrorMessage = "The length of the feedback must be between 50 and 200 characters long.")]
         public string feedbackText { get; set; }
         public string feedbackAuthor { get; set; }
     }
