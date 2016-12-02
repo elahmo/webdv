@@ -12,8 +12,9 @@ namespace WebDV.Models
     {
         [Key,Required(ErrorMessage = "submissionID is required")]
         public int submissionID { get; set; }
-        [Required(ErrorMessage = "userID is required")]
+        [ForeignKey("ApplicationUser"), Required(ErrorMessage = "userID is required")]
         public string userID { get; set; }
+        public virtual ApplicationUser ApplicationUser { get; set; }
         [Required(ErrorMessage = "date is required")]
         public DateTime date { get; set; }
         [Required(ErrorMessage = "submissionData is required")]
