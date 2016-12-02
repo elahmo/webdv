@@ -15,7 +15,6 @@ namespace WebDV.Controllers
     {
         //private SubmissionContext SContext;
         private ApplicationDbContext SContext;
-        private DbSet<Submission> SubmissionDB;
         private Submission[] Submissions;
        
         public HomeController()
