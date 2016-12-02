@@ -19,7 +19,7 @@
             {
                 if (sub.submissionData != null)
                 {
-                    <iframe class="submission-iframe" srcdoc="@System.Text.Encoding.UTF8.GetString(sub.submissionData)"></iframe>
+                    <iframe class="submission-iframe" src="/Feedback/View/@Model[0].submissionID"></iframe>
                 }
             }
         }

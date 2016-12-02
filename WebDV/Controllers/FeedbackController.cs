@@ -21,6 +21,17 @@ namespace WebDV.Controllers
    
         }
 
+        // GET: Feedback/View/5
+        [HttpGet]
+        [Route("Feedback/View/")]
+        public String View(int id)
+        {
+            ApplicationDbContext SubContext = new Models.ApplicationDbContext();
+            Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+
+            return System.Text.Encoding.UTF8.GetString(Submissions[0].submissionData);
+        }
+
         // POST: Feedback/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
