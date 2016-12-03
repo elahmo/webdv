@@ -78,8 +78,7 @@ namespace WebDV.Controllers
                 ApplicationDbContext SubContext = new Models.ApplicationDbContext();
                 using (var transactionQueue = SubContext.Database.BeginTransaction())
                 {
-                    try
-                    {
+                    try {
                         SubContext.SubmissionDB.Add(sub);
                         SubContext.SaveChanges();
 
@@ -87,9 +86,7 @@ namespace WebDV.Controllers
 
                         return RedirectToAction("../");
 
-                    }
-                    catch (DbEntityValidationException exception)
-                    {
+                    } catch (DbEntityValidationException exception) {
                         foreach (var errors in exception.EntityValidationErrors)
                         {
                             foreach (var error in errors.ValidationErrors)
@@ -98,9 +95,7 @@ namespace WebDV.Controllers
                             }
                         }
                         return View("Create");
-                    }
-                    catch
-                    {
+                    } catch {
                         transactionQueue.Rollback();
                         ModelState.AddModelError("fileError", "There was an error with talking to the database.");
                         return View("Create");
