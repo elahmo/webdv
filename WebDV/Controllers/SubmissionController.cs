@@ -7,6 +7,7 @@ using WebDV.Models;
 using System.Diagnostics;
 using Microsoft.AspNet.Identity;
 using System.Web.Security;
+using System.Data.Entity.Validation;
 
 namespace WebDV.Controllers
 {
@@ -60,7 +61,6 @@ namespace WebDV.Controllers
         [HttpPost]
         public ActionResult Upload(HttpPostedFileBase SelectedSubmission)
         {
-            System.Diagnostics.Debug.WriteLine(SelectedSubmission.ContentType.ToLower());
             if (SelectedSubmission != null && SelectedSubmission.ContentType.ToLower() == "text/html" && 
                 (System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".html" ||
                 System.IO.Path.GetExtension(SelectedSubmission.FileName).ToLower() != ".htm"))
@@ -87,6 +87,17 @@ namespace WebDV.Controllers
 
                         return RedirectToAction("../");
 
+                    }
+                    catch (DbEntityValidationException exception)
+                    {
+                        foreach (var errors in exception.EntityValidationErrors)
+                        {
+                            foreach (var error in errors.ValidationErrors)
+                            {
+                                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                            }
+                        }
+                        return View("Create");
                     }
                     catch
                     {

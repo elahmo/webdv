@@ -18,6 +18,7 @@ namespace WebDV.Models
         [Required(ErrorMessage = "date is required")]
         public DateTime date { get; set; }
         [Required(ErrorMessage = "submissionData is required")]
+        [MaxLength(65536, ErrorMessage = "The file size cannot exceed 64kb!")]
         public byte[] submissionData { get; set; }
         [Required, Range(-1, 10,ErrorMessage = "Grade must be between -1 or 10.")]
         public int grade { get; set; }

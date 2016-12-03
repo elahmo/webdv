@@ -182,7 +182,7 @@ form{
     padding-right:5px;
 }
 
-.text-danger{
+.text-danger, .validation-errors{
     color:#cc0000;
     width:100%;
     display:block;
@@ -190,6 +190,10 @@ form{
 }
 .errors {
     margin-bottom:15px;
+}
+
+.feedback-text, .feedback-grade, .feedback-submit {
+    margin-top: 15px;
 }
 
 .span-greeting {

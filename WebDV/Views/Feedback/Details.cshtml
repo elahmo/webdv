@@ -1,37 +1,44 @@
 ﻿@model WebDV.Models.Submission[]
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Details</title>
-</head>
-<body>
-    <div> 
-        @if (Model.Length == 0)
+<div> 
+    @if (Model.Length == 0)
+    {
+        <h2>No Submission Found</h2>
+    }
+    else
+    {
+        <h2>Submission details for @Model[0].submissionID</h2>
+        foreach (WebDV.Models.Submission sub in Model)
         {
-            <h2>No Submission Found</h2>
-        }
-        else
-        {
-            <h2>Submission details for @Model[0].submissionID</h2>
-            foreach (WebDV.Models.Submission sub in Model)
+            if (sub.submissionData != null)
             {
-                if (sub.submissionData != null)
-                {
-                    <iframe class="submission-iframe" src="/Feedback/View/@Model[0].submissionID"></iframe>
-                }
+                <iframe class="submission-iframe" src="/Feedback/View/@Model[0].submissionID"></iframe>
             }
         }
-        <hr />
-        <h2>Provide feedback</h2>
-        @Html.ValidationMessage("fileError")
-        <form class="feedback-form" method="post" action="/Feedback/Edit/@Model[0].submissionID">
-            Feedback text: <textarea name="feedbackText" required>@Model[0].feedbackText</textarea>
-            Grade: <input type="number" name="grade" min="0" max="10" accevalue="@Model[0].grade" required/> <br />
-            <input type="submit" class="btn btn-submit"/>
-        </form>
+    }
+    <hr />
+    <h2>Provide feedback</h2>
+    <div class="validation-errors">
+        @Html.ValidationSummary()
     </div>
-</body>
-</html>
+    <form class="feedback-form" method="post" action="/Feedback/Edit/@Model[0].submissionID">
+        <div class="feedback-text">
+            Feedback text: <textarea name="feedbackText" required>@Model[0].feedbackText</textarea>
+        </div>
+            @if (Model[0].grade != -1)
+            {
+                <div class="feedback-grade"> Grade: <input type="number" name="grade" min="0" max="10" value="@Model[0].grade" required /></div>
+            }
+            else
+            {
+                <div class="feedback-grade"> Grade: <input type="number" name="grade" min="0" max="10" required /></div>
+            }
+        <div class="feedback-submit">
+            <input type="submit" class="btn btn-submit" />
+        </div>
+    </form>
+    <div class="backbtn">
+        @Html.ActionLink("Back", "../")
+    </div>
+</div>
+
 

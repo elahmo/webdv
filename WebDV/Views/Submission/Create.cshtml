@@ -1,8 +1,8 @@
 ﻿@model WebDV.Models.Submission
 <div>
     <h2>Upload a Submission</h2>
-    <div class="group errors">
-        @Html.ValidationMessage("fileError", new { @class = "text-danger" })
+    <div class="validation-errors">
+        @Html.ValidationSummary()
     </div>
     <form class="loginform" enctype="multipart/form-data" method="post" action="/Submission/Upload/@Model">
         <input class="file-input "type="file" id="SelectedSubmission" name="SelectedSubmission" required accept=".html, .htm"/>
@@ -10,6 +10,6 @@
         <input class="btn btn-submit" type="submit" value="submit" />
     </form>
     <div class="backbtn">
-        @Html.ActionLink("Back", "Index")
+        @Html.ActionLink("Back", "../")
     </div>
 </div>

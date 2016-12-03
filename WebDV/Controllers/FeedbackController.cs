@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNet.Identity;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -53,7 +54,20 @@ namespace WebDV.Controllers
 
                         return RedirectToAction("../");
 
-                    } catch {
+                    }
+                    catch (DbEntityValidationException exception)
+                    {
+                        foreach (var errors in exception.EntityValidationErrors)
+                        {
+                            foreach (var error in errors.ValidationErrors)
+                            {
+                                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                            }
+                        }
+                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                        return View("Details", Submissions);
+                    }
+                    catch {
                         transactionQueue.Rollback();
                         Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
                         ModelState.AddModelError("fileError", "There was an error with talking to the database.");
