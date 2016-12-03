@@ -38,50 +38,41 @@ namespace WebDV.Controllers
         public ActionResult Edit(int id, FormCollection collection)
         {
             ApplicationDbContext SubContext = new Models.ApplicationDbContext();
-            try
+            using (var transactionQueue = SubContext.Database.BeginTransaction())
             {
-                using (var transactionQueue = SubContext.Database.BeginTransaction())
+                try
                 {
-                    try
+                    Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                    Submissions[0].grade = Int32.Parse(collection.Get("grade"));
+                    Submissions[0].feedbackText = collection.Get("feedbackText");
+                    Submissions[0].feedbackAuthor = User.Identity.GetUserId();
+                    SubContext.SaveChanges();
+
+                    transactionQueue.Commit();
+
+                    return RedirectToAction("../");
+
+                }
+                catch (DbEntityValidationException exception)
+                {
+                    foreach (var errors in exception.EntityValidationErrors)
                     {
-                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                        Submissions[0].grade = Int32.Parse(collection.Get("grade"));
-                        Submissions[0].feedbackText = collection.Get("feedbackText");
-                        Submissions[0].feedbackAuthor = User.Identity.GetUserId();
-                        SubContext.SaveChanges();
-
-                        transactionQueue.Commit();
-
-                        return RedirectToAction("../");
-
-                    }
-                    catch (DbEntityValidationException exception)
-                    {
-                        foreach (var errors in exception.EntityValidationErrors)
+                        foreach (var error in errors.ValidationErrors)
                         {
-                            foreach (var error in errors.ValidationErrors)
-                            {
-                                ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-                            }
+                            ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
                         }
-                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                        return View("Details", Submissions);
                     }
-                    catch {
-                        transactionQueue.Rollback();
-                        Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                        ModelState.AddModelError("fileError", "There was an error with talking to the database.");
-                        return View("Details", Submissions);
-                    }
+                    Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                    return View("Details", Submissions);
+                }
+                catch {
+                    transactionQueue.Rollback();
+                    Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
+                    ModelState.AddModelError("fileError", "There was an error with talking to the database.");
+                    return View("Details", Submissions);
+                }
 
-                }                
-            }
-            catch
-            {
-                Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
-                ModelState.AddModelError("fileError", "The feedback message cannot exceed 200 characters.");
-                return View("Details", Submissions);
-            }
+            }                
         }
     }
 }
