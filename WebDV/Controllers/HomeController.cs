@@ -13,7 +13,6 @@ namespace WebDV.Controllers
  
     public class HomeController : Controller
     {
-        //private SubmissionContext SContext;
         private ApplicationDbContext SContext;
         private Submission[] Submissions;
        
