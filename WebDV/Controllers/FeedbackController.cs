@@ -53,14 +53,9 @@ namespace WebDV.Controllers
                     return RedirectToAction("../");
 
                 }
-                catch (DbEntityValidationException exception)
-                {
-                    foreach (var errors in exception.EntityValidationErrors)
-                    {
-                        foreach (var error in errors.ValidationErrors)
-                        {
-                            ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
-                        }
+                catch (DbEntityValidationException exception) {
+                    foreach (var errors in exception.EntityValidationErrors) {
+                        foreach (var error in errors.ValidationErrors){ ModelState.AddModelError(error.PropertyName, error.ErrorMessage);}
                     }
                     Submission[] Submissions = SubContext.SubmissionDB.FindBySubmissionID(id).ToArray();
                     return View("Details", Submissions);
